@@ -52,9 +52,14 @@ pip install torch torchvision pandas numpy pillow nltk tqdm matplotlib kagglehub
    * Click the button to select an image.
    * Enter your question (e.g., *"what is the man doing"*, *"how many people are there"*).
    * The system will display the predictions from all 4 models simultaneously so you can evaluate their performance.
+   
+### 🖥️ Project Demo
+Below is a screenshot of the Graphical User Interface (GUI), showing a real-world test case where all four models predict answers based on an uploaded image.
+
+![VQA Model Demo](./image_demo/demo.jpg)
 
 ## 👤 Author
-* **[Your Name]** - *Main Developer* - [GitHub Profile Link]
+* **[Thanh Tùng]** - *Main Developer* - [https://github.com/weamon17]
 * Feel free to reach out at [Your Email Address] for any questions or collaborations!
 
 ## 📜 License
