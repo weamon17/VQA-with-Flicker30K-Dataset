@@ -10,7 +10,7 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 import pickle
 
-# BƯỚC 1: CẤU HÌNH THIẾT BỊ VÀ TỪ ĐIỂN
+#CẤU HÌNH THIẾT BỊ VÀ TỪ ĐIỂN
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Đang chạy trên thiết bị: {device}")
 
@@ -25,7 +25,7 @@ except FileNotFoundError:
     vocab = {"<PAD>": 0, "<SOS>": 1, "<EOS>": 2, "<UNK>": 3}
     inv_vocab = {0: "<PAD>", 1: "<SOS>", 2: "<EOS>", 3: "<UNK>"}
 
-# BƯỚC 2: Các models được định nghĩa trong Notebook đã được copy vào đây để đảm bảo tính nhất quán khi tải trọng số .pth vào các mô hình này.
+# MODELS
 class QuestionEncoder(nn.Module):
     def __init__(self, vocab_size):
         super().__init__()
@@ -286,7 +286,7 @@ class VQAModel_Pretrained_Attention(nn.Module):
 
         return torch.stack(outputs, dim=1)
 
-# BƯỚC 3: KHỞI TẠO VÀ LOAD TRỌNG SỐ 4 MÔ HÌNH
+# KHỞI TẠO VÀ LOAD TRỌNG SỐ 4 MÔ HÌNH
 print("Loading model payloads into RAM/VRAM...")
 vocab_size = len(vocab) 
 
@@ -309,7 +309,7 @@ try:
 except Exception as e:
     print(f"⚠️ Unable to load .pth file (Please check Steps 2 and 3 again): {e}")
 
-# BƯỚC 4: HÀM TIỀN XỬ LÝ VÀ DỰ ĐOÁN (INFERENCE)
+# HÀM TIỀN XỬ LÝ VÀ DỰ ĐOÁN (INFERENCE)
 MAX_LEN = 20
 
 def tokenize(text):
@@ -375,14 +375,13 @@ def predict_answer(model, image_path, question_text):
     except Exception as e:
         return f"ERROE: {str(e)}"
 
-# BƯỚC 5: XÂY DỰNG GIAO DIỆN TKINTER
+#XÂY DỰNG GIAO DIỆN TKINTER
 window = tk.Tk()
 window.title("Hệ thống VQA - Midterm for Deep Learning")
 window.geometry("850x750")
 
 current_image_path = None 
 
-# --- GIAO DIỆN ---
 tk.Label(window, text="Please select a photo.:", font=("Helvetica", 14, "bold"), fg='blue').pack(pady=5)
 btn_select = tk.Button(window, text="📁 Select an image from your computer", command=lambda: select_image(), font=("Helvetica", 10))
 btn_select.pack()
@@ -407,7 +406,6 @@ lbl_res_3.pack(pady=2)
 lbl_res_4 = tk.Label(window, text="Model 4 (ResNet50 + Att): Waiting...", font=("Helvetica", 13, "bold"), fg="green")
 lbl_res_4.pack(pady=2)
 
-# --- CÁC HÀM XỬ LÝ SỰ KIỆN ---
 def select_image():
     global current_image_path
     filepath = filedialog.askopenfilename(
