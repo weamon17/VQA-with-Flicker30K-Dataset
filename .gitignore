@@ -1,0 +1,18 @@
+# Bỏ qua các file trọng số mô hình
+*.pth
+*.pt
+
+# Bỏ qua dataset và file nén (nếu có)
+*.zip
+*.tar.gz
+/dataset/
+/images/
+
+# Bỏ qua các file cache của Python và Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Bỏ qua môi trường ảo (nếu bạn dùng)
+venv/
+env/
